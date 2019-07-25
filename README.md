@@ -15,14 +15,18 @@ const store = createStore(reducer);
 
     export default store;
 ```
+
 3. Create reducer file within `src/redux`
 ```javascript
+// initialize your initial state
 const initialState = {
     info: null,
 }
 
+// create variables for switch case/action creators
 const UPDATE_INFO = 'UPDATE_USER';
 
+// Create your reducer and make sure to have default case
 export default function reducer(state=initialState, action){
     switch(action.type){
         case UPDATE_INFO:
@@ -32,6 +36,7 @@ export default function reducer(state=initialState, action){
     }
 }
 
+// Create functions to update state
 export function updateInfo(newInfo){
     return {
         type: UPDATE_INFO,
@@ -46,9 +51,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+// Import the provider and store you created
 import {Provider} from 'react-redux';
 import store from './ducks/store';
 
+// Wrap App with Provider and send it a store prop
 const render = () => {
   ReactDOM.render(
     <Provider store={store}>
@@ -57,6 +64,7 @@ const render = () => {
 document.getElementById('root')
 )};
 ```
+
 5. Choose component to connect to
 ```javascript
     import React from 'react';
